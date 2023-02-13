@@ -1,8 +1,8 @@
 import React from 'react';
 import './filme-info.css';
 import { useParams, useNavigate } from 'react-router-dom';
-
 import api from '../../services/api';
+import { toast } from 'react-toastify';
 
 const Filme = () => {
   const { id } = useParams();
@@ -46,12 +46,12 @@ const Filme = () => {
     );
 
     if (hasFilme) {
-      alert('Esse filme já está na lista');
+      toast.warn('Esse filme já está na sua lista');
       return;
     }
     filmesSalvos.push(filme);
     localStorage.setItem('@primeflix', JSON.stringify(filmesSalvos));
-    alert('Filme Salvo com sucesso');
+    toast.success('Filme Salvo com sucesso!');
   }
 
   if (loading) {
